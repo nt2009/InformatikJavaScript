@@ -18,6 +18,10 @@ canvas {
     border-radius: 8px;
 }
 
+canvas.active {
+    background: aqua;
+}
+
 button {
     margin: 0 0 3.8rem 0;
     padding: 10px 10px 10px 10px;

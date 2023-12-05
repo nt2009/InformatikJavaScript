@@ -2,8 +2,8 @@ let canvas = document.getElementById('snake-canvas')
 let context = canvas.getContext('2d')
 let startButton = document.getElementById('start-button')
 let isStarted = false
-let areaWidth = canvas.width / 20
-let areaHeight = canvas.height / 20
+let canvasWidth = canvas.width / 30
+let canvasHeight = canvas.height / 20
 
 class Direction {
     
@@ -19,7 +19,7 @@ class Direction {
 }
 
 let snakeBasicItem;
-const placeSnakeBasicItem = () => {
+function placeSnakeBasicItem() {
     let x = Math.floor(Math.random() * 20)
     let y = Math.floor(Math.random() * 20)
     snakeBasicItem = {
@@ -28,35 +28,34 @@ const placeSnakeBasicItem = () => {
     }
 }
 
-const drawElement = (x, y) => {
-    context.fillRect(x * areaWidth, y * areaHeight, areaWidth - 1, areaHeight - 1)
+function drawElement(x, y) {
+    context.fillRect(x * canvasWidth, y * canvasHeight, canvasWidth - 1, canvasHeight - 1)
 }
 
-placeSnakeBasicItem()
-const initialUpdateScreen = () => {
-    context.fillStyle = 'white'
-    drawElement(snakeBasicItem.positionX, snakeBasicItem.positionY)
-    requestAnimationFrame(updateScreen)
-}
-
-const updateScreen = () => {
+function initializeScreen() {
     placeSnakeBasicItem()
     drawElement(snakeBasicItem.positionX, snakeBasicItem.positionY)
 }
 
-const onStartClick = () => {
-    context.fillStyle = 'aqua'
-    context.fillRect(0, 0, canvas.width, canvas.height)
-    initialUpdateScreen()
+function updateScreen() {
+    context.clearRect(0, 0, canvas.width, canvas.height)
+    context.fillStyle = 'black'
+    placeSnakeBasicItem()
+    drawElement(snakeBasicItem.positionX, snakeBasicItem.positionY)
+}
+
+function onStartClick() {
+    canvas.classList.add('.active')
+    isStarted = true
+    initializeScreen()
 }
 startButton.addEventListener('click', onStartClick)
 
 let snakeDirection = Direction.RIGHT
-const handleKeyInput = (event) => {
+function handleKeyInput(event) {
     if(!(isStarted)) return
     if(event.keyCode == 87) {
         snakeDirection = Direction.UP
-        updateScreen()
     }
     if(event.keyCode == 65) {
         snakeDirection = Direction.LEFT
@@ -67,6 +66,11 @@ const handleKeyInput = (event) => {
     if(event.keyCode == 68) {
         snakeDirection = Direction.RIGHT
     }
-    console.log(snakeDirection)
 }
 document.addEventListener('keydown', handleKeyInput)
+
+function loopGame() {
+    if(!(isStarted)) return
+    updateScreen()
+}
+setInterval(loopGame, 2500)
