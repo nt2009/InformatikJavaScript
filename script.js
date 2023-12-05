@@ -45,9 +45,14 @@ function updateScreen() {
 }
 
 function onStartClick() {
-    canvas.classList.add('.active')
-    isStarted = true
-    initializeScreen()
+    if(isStarted) {
+        startButton.innerText = 'Spiel starten'
+        isStarted = false
+    } else {
+        isStarted = true
+        startButton.innerText = 'Spiel stoppen'
+        initializeScreen()
+    }
 }
 startButton.addEventListener('click', onStartClick)
 
