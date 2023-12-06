@@ -46,11 +46,13 @@ function updateScreen() {
 
 function onStartClick() {
     if(isStarted) {
-        startButton.innerText = 'Spiel starten'
         isStarted = false
+        startButton.innerText = 'Spiel starten'
+        canvas.classList.remove('active')
     } else {
         isStarted = true
         startButton.innerText = 'Spiel stoppen'
+        canvas.classList.add('active')
         initializeScreen()
     }
 }
@@ -78,4 +80,4 @@ function loopGame() {
     if(!(isStarted)) return
     updateScreen()
 }
-setInterval(loopGame, 2500)
+setInterval(loopGame, 1500)
