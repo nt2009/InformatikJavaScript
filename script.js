@@ -20,19 +20,25 @@ let food // Definiere die Variable "food", indem man sie nicht Initialisiert!
 let cellWidth = canvas.width / columns // Definiere die Variable "cellWidth", indem man definiert, wie weit ein Element sein soll
 let cellHeight = canvas.height / rows // Definiere die Variable "cellHeight", indem man definiert, wie hoch ein Element sein soll
 let direction = Direction.LEFT // Definiere die Variable "direction", indem man die Ausgangsrichtung auf links setzt
-let foodCollected = false // Definiere die Variable "foodCollected", indem man sie auf false setzt!
+let foodCollected = false // Definiere die Variable "foodCollected", indem man sie auf false setzt
+let isStarted = false
+let startButton = document.getElementById('start-button')
+let image = new Image()
 
+image.src = './images/background.png'
 placeFood() // Führe "placeFood()" aus
 setInterval(gameLoop, 200) // Sage dem Code, dass alle 200ms das Spiel wiederholt werden soll
 document.addEventListener('keydown', keyDown) // Registriere die Tastatur-Steuerung
+startButton.addEventListener('click', pressButton)
 draw() // Führe "draw()" aus
 
 function draw() { // Male alle Elemente auf das Canvas
     context.fillStyle = 'black' // Setze die Farbe auf Schwarz
     context.fillRect(0, 0, canvas.width, canvas.height) // Fülle das gesammte Canvas
-    context.fillStyle = 'white' // Setze die Farbe auf Weiß
+    context.drawImage(image, 0, 0, canvas.width, canvas.height)
+    context.fillStyle = 'blue' // Setze die Farbe auf Weiß
     snake.forEach(part => add(part.x, part.y)) // Male die komplette Schlange
-    context.fillStyle = 'yellow' // Setze die Farbe auf Gelb
+    context.fillStyle = 'red' // Setze die Farbe auf Gelb
     add(food.x, food.y) // Male das Essen
     requestAnimationFrame(draw) // Sage dem Code, das diese Funktion animiert sein soll (oder so in der art, kein plan, was genau das macht... )
 }
@@ -68,6 +74,7 @@ function shiftSnake() { // Bewege alles Elemente der Schlange
 }
 
 function gameLoop() { // Logik der Schlange und vom Essen
+    if(!(isStarted)) return // Überprüße, ob der Knopf gedrückt wurde
     gameOver() // Simuliere Game Over um alles korrekt zu laden
     if(foodCollected) { // Überprüfe, ob die Schlange ein Essen aufgesammelt hat
         snake = [{x: snake[0].x, y: snake[0].y}, ...snake] // Verlängere die Schlange um 1 Element
@@ -89,4 +96,16 @@ function keyDown(event) { // Überprüfe, welche Taste gedrückt wird
     if(event.keyCode == 87) direction = Direction.UP // Wenn Taste "W" gedrückt wird, setze die Richtung auf oben
     if(event.keyCode == 68) direction = Direction.RIGHT // Wenn Taste "D" gedrückt wird, setze die Richtung auf rechts
     if(event.keyCode == 83) direction = Direction.DOWN // Wenn Taste "S" gedrückt wird, setze die Richtung auf unten
+}
+
+function pressButton(event) {
+    if(!(isStarted)) {
+        isStarted = true
+        startButton.innerText = 'Spiel stoppen'
+    } else {
+        isStarted = false
+        startButton.innerText = 'Spiel starten'
+        snake = [{x: 20, y: 15}]
+        direction = Direction.LEFT
+    }
 }
