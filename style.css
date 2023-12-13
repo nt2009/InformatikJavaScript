@@ -51,3 +51,7 @@ body { /* Definiere den Hintergrund */
     list-style: decimal; /* Setze den Still der Auflistung auf eine Nummerierung */
     letter-spacing: 1.5px; /* Setze die größe von Leerzeichen auf 1.5px */
 }
+
+.name { /* Definiere das Objekt mit der Klasse ".name" */
+    color: white; /* Setze die Schriftfarbe auf weiß */
+}

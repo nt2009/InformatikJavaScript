@@ -21,13 +21,13 @@ let cellWidth = canvas.width / columns // Definiere die Variable "cellWidth", in
 let cellHeight = canvas.height / rows // Definiere die Variable "cellHeight", indem man definiert, wie hoch ein Element sein soll
 let direction = Direction.LEFT // Definiere die Variable "direction", indem man die Ausgangsrichtung auf links setzt
 let foodCollected = false // Definiere die Variable "foodCollected", indem man sie auf false setzt
-let isStarted = false
-let startButton = document.getElementById('start-button')
-let image = new Image()
+let isStarted = false // Definiere die Variable "isStarted", indem man sie auf false setzt
+let startButton = document.getElementById('start-button') // Definiere die Variable "startButton", indem man den Button mit der ID vom HTML-Code bekommt
+let image = new Image() // Definiere die Variable "image", indem man ein neues Image Initalisiert
 
 image.src = './images/background.png'
 placeFood() // Führe "placeFood()" aus
-setInterval(gameLoop, 200) // Sage dem Code, dass alle 200ms das Spiel wiederholt werden soll
+setInterval(gameLoop, 100) // Sage dem Code, dass alle 200ms das Spiel wiederholt werden soll
 document.addEventListener('keydown', keyDown) // Registriere die Tastatur-Steuerung
 startButton.addEventListener('click', pressButton)
 draw() // Führe "draw()" aus
@@ -36,9 +36,9 @@ function draw() { // Male alle Elemente auf das Canvas
     context.fillStyle = 'black' // Setze die Farbe auf Schwarz
     context.fillRect(0, 0, canvas.width, canvas.height) // Fülle das gesammte Canvas
     context.drawImage(image, 0, 0, canvas.width, canvas.height)
-    context.fillStyle = 'blue' // Setze die Farbe auf Weiß
+    context.fillStyle = 'blue' // Setze die Farbe auf blau
     snake.forEach(part => add(part.x, part.y)) // Male die komplette Schlange
-    context.fillStyle = 'red' // Setze die Farbe auf Gelb
+    context.fillStyle = '#c33f37' // Setze die Farbe auf rot
     add(food.x, food.y) // Male das Essen
     requestAnimationFrame(draw) // Sage dem Code, das diese Funktion animiert sein soll (oder so in der art, kein plan, was genau das macht... )
 }
@@ -48,9 +48,12 @@ function gameOver() { // Überprüfe, ob die Schlange gegen eine Wand läuft
     let otherParts = snake.slice(1) // Definiere alle anderen Elemente der Schlange
     let duplicatePart = otherParts.find(part => part.x == firstPart.x && part.y == firstPart.y) // Überprüfe, ob ein Element mehrfach existiert
     if(snake[0].x < 0 || snake[0].x > columns - 1 || snake[0].y < 0 || snake[0].y > rows - 1 || duplicatePart) { // Überprüfe, ob die Schlange die Wand berührt oder ein Element mehrfach existiert
+        if(document.exitFullscreen) document.exitFullscreen() // Verlasse den Full-Screen Modus
         placeFood() // Platzere ein neues Essen
         snake = [{x: 20, y: 15}] // Platziere die Schlange neu
         direction = Direction.LEFT // Setze die Richtung auf links
+        startButton.innerText = 'Spiel starten' // Setze den Start Knopf zurück
+        isStarted = false // Setze isStarted zurück
     }
 }
 
@@ -98,14 +101,15 @@ function keyDown(event) { // Überprüfe, welche Taste gedrückt wird
     if(event.keyCode == 83) direction = Direction.DOWN // Wenn Taste "S" gedrückt wird, setze die Richtung auf unten
 }
 
-function pressButton(event) {
-    if(!(isStarted)) {
-        isStarted = true
-        startButton.innerText = 'Spiel stoppen'
-    } else {
-        isStarted = false
-        startButton.innerText = 'Spiel starten'
-        snake = [{x: 20, y: 15}]
-        direction = Direction.LEFT
+function pressButton(_event) { // Wenn der Knopf gedrückt wird, dann
+    if(!(isStarted)) { // Wenn das Spiel nicht gestartet ist, dann
+        isStarted = true // Setze die Variable "isStarted" auf true
+        startButton.innerText = 'Spiel stoppen' // Verändere den Text des Knopfes
+        if(canvas.requestFullscreen) canvas.requestFullscreen() // Gehe in den Full-Screen Modus
+    } else { // Wenn das Spiel gestartet ist, dann
+        isStarted = false // Setze die Variable "isStarted" auf false
+        startButton.innerText = 'Spiel starten' // Verändere den Text des Knopfes
+        snake = [{x: 20, y: 15}] // Setze die Schlange zurück
+        direction = Direction.LEFT // Setze die Richtung zurück
     }
 }
