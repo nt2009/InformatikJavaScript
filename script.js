@@ -79,8 +79,8 @@ function add(x, y) { // Füge ein Element zum Spiel hinzu
 
 function shiftSnake() { // Bewege alles Elemente der Schlange
     for(let i = snake.length - 1; i > 0; i--) { // Wiederhole für jedes Element
-        const part = snake[i] // Definiere das aktuelle Element
-        const lastPart = snake[i - 1] // Definiere das vorherige Element
+        let part = snake[i] // Definiere das aktuelle Element
+        let lastPart = snake[i - 1] // Definiere das vorherige Element
         part.x = lastPart.x // Setze die X Position vom aktuellem Element auf die vom vorherigem Element
         part.y = lastPart.y // Setze die Y Position vom aktuellem Element auf die vom verherigem Element
     }
