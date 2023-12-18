@@ -23,7 +23,7 @@ let foodCollected = false // Definiere die Variable "foodCollected", indem man s
 let isStarted = false // Definiere die Variable "isStarted", indem man sie auf false setzt
 let startButton = document.getElementById('start-button') // Definiere die Variable "startButton", indem man den Button mit der ID vom HTML-Code bekommt
 let image = new Image() // Definiere die Variable "image", indem man ein neues Image Initalisiert
-let itemType = ItemType.NORMAL // Definiere die Variable "itemType", indem man sie auf NORMAL setzt
+let itemType = ItemType.BOOSTER // Definiere die Variable "itemType", indem man sie auf NORMAL setzt
 let itemPickupCount = 0 // Definiere die Variable "itemPickupCount", indem man sie auf 0 setzt
 
 image.src = './assets/background-paused.png' // Ändere das Hintergrundbild auf Pausiert

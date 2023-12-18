@@ -25,7 +25,7 @@ body { /* Definiere den Hintergrund */
     letter-spacing: 1.5px; /* Setze die größte vom Leerzeichen auf 1.5px */
     text-decoration: underline; /* Unterstriche den Text */
     color: midnightblue; /* Setze die Schriftfarbe auf "midnightblue" */
-    border: white .5px solid; /* Setze die Umrandung des Objekts auf eine solide, weiße, 1/2 Pixel dicke linie */
+    border: yellowgreen .5px solid; /* Setze die Umrandung des Objekts auf eine solide, weiße, 1/2 Pixel dicke linie */
     border-radius: 5px; /* Sage, dass die Ecken 5px abgerundet sind */
     transition: 250ms; /* Setze die Animationszeit auf 250ms */
     cursor: pointer; /* Sage, dass der Mauszeiger wie ein aussehen soll, wie ein "Pointer" */
