@@ -26,7 +26,7 @@ let image = new Image() // Definiere die Variable "image", indem man ein neues I
 let itemType = ItemType.NORMAL // Definiere die Variable "itemType", indem man sie auf NORMAL setzt
 let itemPickupCount = 0 // Definiere die Variable "itemPickupCount", indem man sie auf 0 setzt
 
-image.src = './background-paused.png' // Ändere das Hintergrundbild auf Pausiert
+image.src = './assets/background-paused.png' // Ändere das Hintergrundbild auf Pausiert
 placeFood() // Führe "placeFood()" aus
 
 if(itemType == ItemType.BOOSTER) setInterval(gameLoop, 50) // Überprüpfe, ob das Essen ein besonderes Essen ist
@@ -57,7 +57,7 @@ function gameOver() { // Überprüfe, ob die Schlange gegen eine Wand läuft
     let duplicatePart = otherParts.find(part => part.x == firstPart.x && part.y == firstPart.y) // Überprüfe, ob ein Element mehrfach existiert
     if(snake[0].x < 0 || snake[0].x > columns - 1 || snake[0].y < 0 || snake[0].y > rows - 1 || duplicatePart) { // Überprüfe, ob die Schlange die Wand berührt oder ein Element mehrfach existiert
         if(document.exitFullscreen) document.exitFullscreen() // Verlasse den Full-Screen Modus
-        image.src = './background-paused.png' // Ändere das Hintergrundbild auf Pausiert
+        image.src = './assets/background-paused.png' // Ändere das Hintergrundbild auf Pausiert
         placeFood() // Platzere ein neues Essen
         snake = [{x: 20, y: 15}] // Platziere die Schlange neu
         direction = Direction.LEFT // Setze die Richtung auf links
@@ -116,12 +116,12 @@ function pressButton(_event) { // Wenn der Knopf gedrückt wird, dann
     if(!(isStarted)) { // Wenn das Spiel nicht gestartet ist, dann
         isStarted = true // Setze die Variable "isStarted" auf true
         startButton.innerText = 'Spiel stoppen' // Verändere den Text des Knopfes
-        image.src = './background-started.png' // Ändere das Hintergrundbild auf Gestartet
+        image.src = './assets/background-started.png' // Ändere das Hintergrundbild auf Gestartet
         if(canvas.requestFullscreen) canvas.requestFullscreen() // Gehe in den Full-Screen Modus
     } else { // Wenn das Spiel gestartet ist, dann
         isStarted = false // Setze die Variable "isStarted" auf false
         startButton.innerText = 'Spiel starten' // Verändere den Text des Knopfes
-        image.src = './background-paused.png' // Ändere das Hintergrundbild auf Pausiert
+        image.src = './assets/background-paused.png' // Ändere das Hintergrundbild auf Pausiert
         snake = [{x: 20, y: 15}] // Setze die Schlange zurück
         direction = Direction.LEFT // Setze die Richtung zurück
     }
