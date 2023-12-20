@@ -38,7 +38,7 @@ function draw() { // Male alle Elemente auf das Canvas
     snake.forEach(part => add(part.x, part.y)) // Male die komplette Schlange
     context.fillStyle = '#c33f37' // Setze die Farbe auf rot
     add(food.x, food.y) // Male das Essen
-    context.fillStyle = 'purple' // Setze die Farbe auf Lila
+    context.fillStyle = '#fc0307' // Setze die Farbe auf Lila
     context.font = '20px Rubik Doodle Shadow' // Setze die Schriftfarbe
     context.fillText(`Anzahl :  ${itemPickupCount}`, 10, 20) // Schreibe den Text
     requestAnimationFrame(draw) // Sage dem Code, das diese Funktion animiert sein soll (oder so in der art, kein plan, was genau das macht... )
@@ -57,6 +57,7 @@ function gameOver() { // Überprüfe, ob die Schlange gegen eine Wand läuft
         startButton.innerText = 'Spiel starten' // Setze den Start Knopf zurück
         isStarted = false // Setze isStarted zurück
         itemPickupCount = 0 // Setze den Zähler zurück
+        clearInterval(gameInterval)
         errorAudio.play()
         canvas.classList.remove('active')
     }
@@ -101,11 +102,17 @@ function gameLoop() { // Logik der Schlange und vom Essen
     }
     if(itemPickupCount == 5) { // Wenn der Spieler 5 Essen gegessen hat, dann...
         clearInterval(gameInterval) // Lösche die Wiederholung vom Spiel
-        gameInterval = setInterval(gameLoop, 50) // Sage dem Spiel, dass es sich alle 50ms wiederholen soll
+        gameInterval = setInterval(gameLoop, 60) // Sage dem Spiel, dass es sich alle 50ms wiederholen soll
     }
     if(itemPickupCount == 10) { // Wenn der Spieler 10 Essen gegessen hat, dann...
         clearInterval(gameInterval) // Lösche die Wiederholung vom Spiel
-        gameInterval = setInterval(gameLoop, 25) // Sage dem Spiel, dass es sich alle 50ms wiederholen soll
+        gameInterval = setInterval(gameLoop, 35) // Sage dem Spiel, dass es sich alle 50ms wiederholen soll
+    }
+    if(itemPickupCount == 20) {
+        clearInterval(gameInterval)
+        if(document.exitFullscreen) document.exitFullscreen()
+        image.src = './assets/img/background-won.png'
+        canvas.classList.remove('active')
     }
 }
 
@@ -123,6 +130,7 @@ function pressButton(_event) { // Wenn der Knopf gedrückt wird, dann
         image.src = './assets/img/background-started.png' // Ändere das Hintergrundbild auf Gestartet
         if(canvas.requestFullscreen) canvas.requestFullscreen() // Gehe in den Full-Screen Modus
         canvas.classList.add('active')
+        gameInterval = setInterval(gameInterval, 100)
     } else { // Wenn das Spiel gestartet ist, dann
         isStarted = false // Setze die Variable "isStarted" auf false
         startButton.innerText = 'Spiel starten' // Verändere den Text des Knopfes
@@ -130,5 +138,6 @@ function pressButton(_event) { // Wenn der Knopf gedrückt wird, dann
         snake = [{x: 20, y: 15}] // Setze die Schlange zurück
         direction = Direction.LEFT // Setze die Richtung zurück
         canvas.classList.remove('active')
+        clearInterval(gameInterval)
     }
 }
