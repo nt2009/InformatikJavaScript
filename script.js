@@ -19,6 +19,8 @@ let isStarted = false // Definiere die Variable "isStarted", indem man sie auf f
 let startButton = document.getElementById('start-button') // Definiere die Variable "startButton", indem man den Button mit der ID vom HTML-Code bekommt
 let image = new Image() // Definiere die Variable "image", indem man ein neues Image Initalisiert
 let itemPickupCount = 0 // Definiere die Variable "itemPickupCount", indem man sie auf 0 setzt
+let pickupAudio = new Audio('assets/audio/snake-eat.mp3')
+let errorAudio = new Audio('assets/audio/snake-wall.mp3')
 
 image.src = './assets/img/background-paused.png' // Ändere das Hintergrundbild auf Pausiert
 placeFood() // Führe "placeFood()" aus
@@ -55,6 +57,8 @@ function gameOver() { // Überprüfe, ob die Schlange gegen eine Wand läuft
         startButton.innerText = 'Spiel starten' // Setze den Start Knopf zurück
         isStarted = false // Setze isStarted zurück
         itemPickupCount = 0 // Setze den Zähler zurück
+        errorAudio.play()
+        canvas.classList.remove('active')
     }
 }
 
@@ -90,6 +94,7 @@ function gameLoop() { // Logik der Schlange und vom Essen
     if(direction == Direction.UP) snake[0].y-- // Bewege die Schlange nach Oben
     if(direction == Direction.DOWN) snake[0].y++ // Bewege die Schlange nach Unten
     if(snake[0].x == food.x && snake[0].y == food.y) { // Überprüfe, ob die Schlange ein Essen einsammeln kann
+        pickupAudio.play()
         foodCollected = true // Sage der Schlange, dass sie ein Essen aufsammeln soll
         placeFood() // Platziere ein neues Essen
         itemPickupCount += 1 // Addiere 1 auf den aktuellen Wert
@@ -117,11 +122,13 @@ function pressButton(_event) { // Wenn der Knopf gedrückt wird, dann
         startButton.innerText = 'Spiel stoppen' // Verändere den Text des Knopfes
         image.src = './assets/img/background-started.png' // Ändere das Hintergrundbild auf Gestartet
         if(canvas.requestFullscreen) canvas.requestFullscreen() // Gehe in den Full-Screen Modus
+        canvas.classList.add('active')
     } else { // Wenn das Spiel gestartet ist, dann
         isStarted = false // Setze die Variable "isStarted" auf false
         startButton.innerText = 'Spiel starten' // Verändere den Text des Knopfes
         image.src = './assets/img/background-paused.png' // Ändere das Hintergrundbild auf Pausiert
         snake = [{x: 20, y: 15}] // Setze die Schlange zurück
         direction = Direction.LEFT // Setze die Richtung zurück
+        canvas.classList.remove('active')
     }
 }

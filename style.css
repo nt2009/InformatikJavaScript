@@ -17,7 +17,7 @@ body { /* Definiere den Hintergrund */
     border-radius: 5px; /* Sage, dass die Ecken 5px abgerunden sind */
 }
 
-.snake-canvas:hover {
+.snake-canvas:hover.active {
     cursor: none;
 }
 
