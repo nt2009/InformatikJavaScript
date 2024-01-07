@@ -1,32 +1,25 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Importiere die style.css Datei (CSS) -->
     <link rel="stylesheet" href="./style.css">
-    <!-- Setze den Titel der Seite auf "Willy Willy" -->
-    <title>Albert-Brunhilde 42</title>
+    <link rel="icon" href="./assets/img/icon.png">
+    <title>Snake</title>
 </head>
 <body>
-    <h1 class="name">Albert-Brunhilde</h1>
-    <!-- Erstelle das Canvas mit einer ID von "snake-canvas", einer Klasse von ".snake-canvas", einer weite von 720px und einer höhe von 480px (16:9 Format) -->
+    <h1 class="name">Snake spielen</h1>
     <canvas id="snake-canvas" class="snake-canvas" width="720" height="480"></canvas>
-    <!-- Erstelle den Knopf, um das Spiel zu starten mit dem Text "Spiel starten", einer ID von "start-button" und einer Klasse von ".start-button" -->
     <button id="start-button" class="start-button">Spiel starten</button>
-    <!-- Erstelle einen Container, um die Regeln in diesem anzuzeigen -->
     <div class="rules">
-        <!-- Erstelle die Auflistung der Regeln -->
         <ul class="rule-list">
-            <!-- Erstelle die jeweiligen Regel Elemente -->
-            <li class="single-rule">Versuche jedes Essen einzusammeln</li>
-            <li class="single-rule">Vermeide jede Berührung mit allem, was kein Essen ist</li>
-            <li class="single-rule">Deine Schlange wächst um 1 Element pro Essen</li>
+            <li class="single-rule">Versuche jeden Punkt einzusammeln</li>
+            <li class="single-rule">Vermeide jede Berührung mit allem, was kein Punkt ist</li>
+            <li class="single-rule">Deine Schlange wächst um 1 Element pro Punkt</li>
             <li class="single-rule">Dein Ziel ist es, 20 Elemente lang zu werden</li>
-            <li class="single-rule">Nach dem 5. und dem 10. Mal wird es doppelt so schnell</li>
+            <li class="single-rule">Nach dem 5. und dem 10. Mal wird schneller</li>
+            <li class="single-rule">Du siehst die Anzahl deiner Punkte oben links</li>
         </ul>
     </div>
-    <!-- Importiere die script.js Datei (JavaScript) -->
+    <img src="./assets/img/icon.png" alt="LOGO" class="logo">
     <script src="./script.js"></script>
 </body>
 </html>
