@@ -1,3 +1,8 @@
+const Settings = {
+    ROWS: 20,
+    COLUMNS: 30
+}
+
 const Direction = {
     UP: 'UP',
     DOWN: 'DOWN',
@@ -7,8 +12,8 @@ const Direction = {
 
 let canvas = document.getElementById('snake-canvas')
 let context = canvas.getContext('2d')
-let rows = 20
-let columns = 30
+let rows = Settings.ROWS
+let columns = Settings.COLUMNS
 let snake = [{x: 10, y: 15}]
 let food
 let cellWidth = canvas.width / columns
