@@ -109,11 +109,11 @@ function gameLoop() {
     }
     if(itemPickupCount == 5) {
         clearInterval(gameInterval)
-        gameInterval = setInterval(gameLoop, 90)
+        gameInterval = setInterval(gameLoop, 95)
     }
     if(itemPickupCount == 10) {
         clearInterval(gameInterval)
-        gameInterval = setInterval(gameLoop, 80)
+        gameInterval = setInterval(gameLoop, 90)
     }
     if(itemPickupCount == 20) {
         isStarted = false
