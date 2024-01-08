@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
+/* Variablen */
 :root {
     --font: 'Open Sans', sans-serif;
     --border: rgb(0, 250, 240) .5px solid;
@@ -9,6 +10,7 @@
     --letterSpace: 1.2px;
 }
 
+/* Gesamte Webseite */
 body {
     height: 100%;
     background-color: rgb(30, 50, 180);
@@ -20,16 +22,19 @@ body {
     align-items: center;
 }
 
+/* Canvas als Spielfeld */
 .snake-canvas {
     border: var(--border);
     border-radius: var(--borderRadius);
     margin-bottom: 1rem;
 }
 
+/* Canvas, wenn die Maus drüber ist und das Spiel gestaret ist */
 .snake-canvas:hover.active {
     cursor: none;
 }
 
+/* Start- oder Stoppknopf */
 .start-button {
     padding: 1rem 1rem 1rem 1rem;
     background-color: rgb(60, 60, 60);
@@ -44,12 +49,14 @@ body {
     cursor: pointer;
 }
 
+/* Start- oder Stoppkopf */
 .start-button:hover {
     transition: var(--transitionDelay);
     font-family: var(--font);
     background-color: rgb(30, 30, 120);
 }
 
+/* Das Element wo die Liste mit Spielregeln Spielregeln drin ist */
 .rules {
     padding: 1rem 1rem 1rem 1rem;
     margin-top: 1rem;
@@ -59,20 +66,24 @@ body {
     background-image: linear-gradient(320deg, rgb(90, 180, 140) 0%, rgb(60, 60, 60) 70%);
 }
 
+/* Eine Liste mit alle Spielregeln */
 .rule-list {
     list-style: decimal;
     letter-spacing: var(--letterSpace);
 }
 
+/* Eine einzelne Spielregel aus der Liste */
 .single-rule {
     color: var(--textColor);
 }
 
+/* Die Überschrift */
 .name {
     font-weight: 700;
     color: var(--textColor);
 }
 
+/* Das Logo vom Spiel */
 .logo {
     margin-top: 1rem;
     background-color: #2b4162;
