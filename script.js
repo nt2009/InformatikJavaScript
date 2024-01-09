@@ -6,7 +6,6 @@ const Settings = {
     COLUMNS: 30
 }
 
-
 /*
 * Mögliche Richtungen für die Schlange
 */
@@ -151,7 +150,7 @@ function gameLoop() {
 }
 
 /*
-* Überprüft, welche Taste gedrückt wurde
+* Überprüft welche Taste gedrückt wurde
 */
 function keyDown(event) {
     if(event.keyCode == 65) direction = Direction.LEFT
