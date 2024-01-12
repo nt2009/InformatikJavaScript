@@ -3,9 +3,6 @@ let columnSetting = document.getElementById('setting-column')
 rowSetting.value = 20
 columnSetting.value = 30
 
-/*
-* Mögliche Richtungen für die Schlange
-*/
 const Direction = {
     UP: 'UP',
     DOWN: 'DOWN',
@@ -42,9 +39,6 @@ settingSubmitButton.addEventListener('click', reloadSettings)
 settingResetButton.addEventListener('click', resetSettings)
 draw()
 
-/*
-* Malt alle Elemente auf das Canvas
-*/
 function draw() {
     context.fillStyle = 'black'
     context.fillRect(0, 0, canvas.width, canvas.height) 
@@ -61,10 +55,6 @@ function draw() {
     requestAnimationFrame(draw)
 }
 
-/*
-* Überprüft ob der Spieler einen Fehler gemacht hat.
-* Wenn ja wird das Spiel abgebrochen
-*/
 function gameOver() {
     let firstPart = snake[0]
     let otherParts = snake.slice(1)
@@ -84,25 +74,16 @@ function gameOver() {
     }
 }
 
-/*
-* Setzt die Position vom Punkt, den es einzusammeln gilt, neu
-*/
 function placeFood() {
     let randomX = Math.floor(Math.random() * columns)
     let randomY = Math.floor(Math.random() * rows)
     food = {x: randomX, y: randomY}
 }
 
-/*
-* Zeichnet ein Element auf dem Canvas mit etwas Abstand an den Seiten
-*/
 function add(x, y) {
     context.fillRect(x * cellWidth, y * cellHeight, cellWidth - 1, cellHeight - 1)
 }
 
-/*
-* Bewegt die Schlange mit allen Elementen
-*/
 function shiftSnake() {
     for(let i = snake.length - 1; i > 0; i--) { 
         let part = snake[i]
@@ -112,9 +93,6 @@ function shiftSnake() {
     }
 }
 
-/*
-* Wiederholt das Spiel in einem Regelmäßigem Abstand
-*/
 function gameLoop() {
     if(!(isStarted)) return
     gameOver()
@@ -150,9 +128,6 @@ function gameLoop() {
     }
 }
 
-/*
-* Überprüft welche Taste gedrückt wurde
-*/
 function keyDown(event) {
     if(event.keyCode == 65) direction = Direction.LEFT
     if(event.keyCode == 87) direction = Direction.UP
@@ -160,9 +135,6 @@ function keyDown(event) {
     if(event.keyCode == 83) direction = Direction.DOWN
 }
 
-/*
-* Logik um das Spiel zu starten oder zu stoppen
-*/
 function toggleGame(_event) {
     if(!(isStarted)) {
         isStarted = true
