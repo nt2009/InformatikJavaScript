@@ -6,7 +6,7 @@
     <title>Snake</title>
 </head>
 <body>
-    <h1 class="name">Snake spielen</h1>
+    <h1 class="game-name">Snake spielen</h1>
     <canvas id="snake-canvas" class="snake-canvas" width="720" height="480"></canvas>
     <button id="start-button" class="start-button">Spiel starten</button>
     <div class="rules">
@@ -20,10 +20,15 @@
         </ul>
     </div>
     <div class="settings">
+        <h3 class="setting-name">Einstellungen</h3>
         <ul class="setting-list">
-            <li class="single-setting"><input type="number" placeholder="Zeilen"></li>
-            <li class="single-setting"><input type="number" placeholder="Spalten"></li>
+            <li class="single-setting"><input type="number" placeholder="Zeilen" id="setting-row" class="input-field"></li>
+            <li class="single-setting"><input type="number" placeholder="Spalten" id="setting-column" class="input-field"></li>
         </ul>
+        <div class="setting-button">
+            <button class="setting-submit-button setting-button" id="setting-submit-button">Abschicken</button>
+            <button class="setting-reset-button setting-button" id="setting-reset-button">Zurücksetzen</button>
+        </div>
     </div>
     <img src="./assets/img/icon.png" alt="LOGO" class="logo">
     <script src="./script.js"></script>

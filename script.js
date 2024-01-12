@@ -1,10 +1,7 @@
-/*
-* Mögliche Einstellungen
-*/
-const Settings = {
-    ROWS: 20,
-    COLUMNS: 30
-}
+let rowSetting = document.getElementById('setting-row')
+let columnSetting = document.getElementById('setting-column')
+rowSetting.value = 20
+columnSetting.value = 30
 
 /*
 * Mögliche Richtungen für die Schlange
@@ -18,8 +15,8 @@ const Direction = {
 
 let canvas = document.getElementById('snake-canvas')
 let context = canvas.getContext('2d')
-let rows = Settings.ROWS
-let columns = Settings.COLUMNS
+let rows = rowSetting.value
+let columns = columnSetting.value
 let snake = [{x: 10, y: 15}]
 let food
 let cellWidth = canvas.width / columns
@@ -28,6 +25,8 @@ let direction = Direction.LEFT
 let foodCollected = false
 let isStarted = false
 let startButton = document.getElementById('start-button')
+let settingSubmitButton = document.getElementById('setting-submit-button')
+let settingResetButton = document.getElementById('setting-reset-button')
 let image = new Image()
 let itemPickupCount = 0
 let pickupAudio = new Audio('assets/audio/snake-eat.mp3')
@@ -38,7 +37,9 @@ placeFood()
 
 let gameInterval = setInterval(gameLoop, 100)
 document.addEventListener('keydown', keyDown)
-startButton.addEventListener('click', pressButton)
+startButton.addEventListener('click', toggleGame)
+settingSubmitButton.addEventListener('click', reloadSettings)
+settingResetButton.addEventListener('click', resetSettings)
 draw()
 
 /*
@@ -162,7 +163,7 @@ function keyDown(event) {
 /*
 * Logik um das Spiel zu starten oder zu stoppen
 */
-function pressButton(_event) {
+function toggleGame(_event) {
     if(!(isStarted)) {
         isStarted = true
         startButton.innerText = 'Spiel stoppen'
@@ -179,4 +180,22 @@ function pressButton(_event) {
         canvas.classList.remove('active')
         clearInterval(gameInterval)
     }
+}
+
+function reloadSettings(_event) {
+    rows = rowSetting.value
+    columns = columnSetting.value
+    cellWidth = canvas.width / columns
+    cellHeight = canvas.height / rows4
+    placeFood()
+}
+
+function resetSettings(_event) {
+    rowSetting.value = 20
+    columnSetting.value = 30
+    rows = rowSetting.value
+    columns = columnSetting.value
+    cellWidth = canvas.width / columns
+    cellHeight = canvas.height / rows
+    placeFood()
 }

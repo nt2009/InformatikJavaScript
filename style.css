@@ -77,8 +77,93 @@ body {
     color: var(--textColor);
 }
 
+.settings {
+    padding: 1rem 1rem 1rem 1rem;
+    margin-top: 1rem;
+    border: var(--border);
+    border-radius: var(--borderRadius);
+    background-color: rgb(80, 240, 200);
+    background-image: linear-gradient(320deg, rgb(90, 180, 140) 0%, rgb(60, 60, 60) 70%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.setting-list {
+    margin-top: 0rem;
+    list-style: none;
+}
+
+.single-setting {
+    margin-top: 5px;
+}
+
+.setting-button {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.setting-name {
+    margin-top: 0.5rem;
+    font-weight: 700;
+    color: var(--textColor);
+}
+
+.input-field {
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    border: none;
+    border-radius: var(--borderRadius);
+    font-family: 'Open Sans', sans-serif;
+    background-color: rgb(60, 60, 60);
+    color: var(--textColor);
+}
+
+.setting-submit-button {
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    background-color: rgb(60, 60, 60);
+    font-size: 1rem;
+    font-family: var(--font);
+    letter-spacing: var(--letterSpace);
+    text-decoration: underline;
+    color: var(--textColor);
+    border: var(--border);
+    border-radius: var(--borderRadius);
+    transition: var(--transitionDelay);
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+.setting-submit-button:hover {
+    transition: var(--transitionDelay);
+    font-family: var(--font);
+    background-color: rgb(30, 30, 120);
+}
+
+.setting-reset-button {
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    background-color: rgb(60, 60, 60);
+    font-size: 1rem;
+    font-family: var(--font);
+    letter-spacing: var(--letterSpace);
+    text-decoration: underline;
+    color: var(--textColor);
+    border: var(--border);
+    border-radius: var(--borderRadius);
+    transition: var(--transitionDelay);
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.setting-reset-button:hover {
+    transition: var(--transitionDelay);
+    font-family: var(--font);
+    background-color: rgb(30, 30, 120);
+}
+
 /* Die Überschrift */
-.name {
+.game-name {
     font-weight: 700;
     color: var(--textColor);
 }
